@@ -12,7 +12,8 @@ class PostController extends Controller
     }
 
     function show() {
-        return view('pages.post.index');
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        return view('pages.post.index', [ 'posts' => $posts ]);
     }
 
     function create() {
@@ -28,5 +29,11 @@ class PostController extends Controller
 
         Post::create(request()->all());
         return redirect('post');
+    }
+
+    function destroy($id) {
+        Post::destroy($id);
+
+        return redirect()->route('post');
     }
 }

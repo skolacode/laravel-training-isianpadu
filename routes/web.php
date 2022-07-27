@@ -41,4 +41,5 @@ Route::name('post')->controller(PostController::class)->prefix('post')->group(fu
     Route::get('/create', 'create')->name('.create');
     Route::post('/store', 'store')->name('.store');
     Route::get('/string', 'showString')->name('.string');
+    Route::delete('/destroy/{id}', 'destroy')->name('.destroy');
 });

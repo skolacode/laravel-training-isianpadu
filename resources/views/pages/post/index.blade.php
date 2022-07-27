@@ -5,14 +5,25 @@
 @section('content')
 
   <div class="container">
-    <h1>Post List</h1>
+    <h1 style="margin-top: 15px; margin-bottom: 15px">Post List</h1>
 
-    <a style="margin-bottom: 10px" href="{{ route('post.create') }}" class="btn btn-outline-primary" tabindex="-1" role="button" >Primary link</a>
+    <a style="margin-bottom: 10px" href="{{ route('post.create') }}" class="btn btn-outline-primary btn-sm" role="button">Create Post</a>
 
-    <div class="card" style="padding: 10px">
-      <p>Title here</p>
-      <p>action buttons here</p>
-    <div/>
+    @foreach ($posts as $post)
+      <div class="card" style="padding: 10px; max-width: 400px; margin-bottom: 20px">
+        <p style="font-size: 20px; color: #a18888">{{ $post->name }}</p>
+        
+        <span style="font-size: 12px; color: #cdcdcd">Description</span>
+        <p>{{ $post->description }}</p>
+
+        <form action="{{ route('post.destroy', ['id' => $post->id]) }}" method="POST">
+          @method('DELETE')
+          @csrf
+          <button class="btn btn-danger" type="submit">Delete</button>
+        </form>
+      </div>
+    @endforeach
+
   </div>
   
 @endsection
