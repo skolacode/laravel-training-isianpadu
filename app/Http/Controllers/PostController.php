@@ -21,6 +21,12 @@ class PostController extends Controller
     }
 
     function store() {
+
+        request()->validate([
+            'name' => 'required|max:10',
+            'description' => 'required',
+        ]);
+
         Post::create(request()->all());
         return redirect('post');
     }
