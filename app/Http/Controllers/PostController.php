@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use App\Models\PostModel\Post;
 
 class PostController extends Controller
 {
@@ -14,17 +12,17 @@ class PostController extends Controller
     }
 
     function show() {
-        return view('post.index');
+        return view('pages.post.index');
     }
 
     function create() {
-        return view('post.create');
+        return view('pages.post.create');
     }
 
     function store() {
         
         request()->validate([
-            'name' => 'required|max:10|numeric',
+            'name' => 'required|max:10',
             'description' => 'required',
         ]);
 

@@ -26,7 +26,7 @@
       @enderror
 
       <label for="desc">Desc:</label><br>
-      <textarea id="desc" name="description" value="{{ old('description') }}"></textarea>
+      <textarea id="desc" name="description">{{ old('description') }}</textarea>
       @error('description')
         <div class="">
           please enter
