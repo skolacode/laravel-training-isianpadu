@@ -13,22 +13,26 @@
   
   <div class="container">
 
-    @if ($errors->any())
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-    @endif
-
-    <form action="{{ route('post.store') }}" method="POST">
+    <form class="needs-validation" action="{{ route('post.store') }}" method="POST">
       @csrf
       <label for="fname">First name:</label><br>
-      <input type="text" id="name" name="name" required maxlength="11"><br>
+      <input type="text" id="name" name="name" maxlength="11" value="{{ old('name') }}"><br>
+
+      {{-- METHOD 2 --}}
+      @error('name')
+        <div class="">
+          {{$errors->first('name')}}
+        </div>
+      @enderror
+
       <label for="desc">Desc:</label><br>
-      <textarea id="desc" name="description" required></textarea><br><br>
+      <textarea id="desc" name="description" value="{{ old('description') }}"></textarea>
+      @error('description')
+        <div class="">
+          please enter
+        </div>
+      @enderror
+      </br></br>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form> 
   </div>
