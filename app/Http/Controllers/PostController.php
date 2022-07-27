@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -20,9 +21,7 @@ class PostController extends Controller
     }
 
     function store() {
-
-        // Store in database here;
-
+        Post::create(request()->all());
         return redirect('post');
     }
 }

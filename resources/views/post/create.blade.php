@@ -15,9 +15,9 @@
     <form action="{{ route('post.store') }}" method="POST">
       @csrf
       <label for="fname">First name:</label><br>
-      <input type="text" id="fname" name="name"><br>
-      <label for="lname">Desc:</label><br>
-      <textarea id="lname" name="desc"></textarea><br><br>
+      <input type="text" id="name" name="name"><br>
+      <label for="desc">Desc:</label><br>
+      <textarea id="desc" name="description"></textarea><br><br>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form> 
   </div>
