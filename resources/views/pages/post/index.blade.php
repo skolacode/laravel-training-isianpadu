@@ -16,11 +16,14 @@
         <span style="font-size: 12px; color: #cdcdcd">Description</span>
         <p>{{ $post->description }}</p>
 
-        <form action="{{ route('post.destroy', ['id' => $post->id]) }}" method="POST">
-          @method('DELETE')
-          @csrf
-          <button class="btn btn-danger" type="submit">Delete</button>
-        </form>
+        <div class="table">
+          <a class="btn btn-secondary btn-sm" href="{{ route('post.edit', ['id' => $post->id]) }}">Edit</a>
+          <form action="{{ route('post.destroy', ['id' => $post->id]) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button class="btn btn-danger" type="submit">Delete</button>
+          </form>
+        </div>
       </div>
     @endforeach
 

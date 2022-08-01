@@ -36,4 +36,25 @@ class PostController extends Controller
 
         return redirect()->route('post');
     }
+
+    function edit($id) {
+        $post = Post::find($id);
+        $saya = "hi";
+        return view('pages.post.edit', compact('post', 'saya'));
+    }
+
+    function update($id) {
+
+        request()->validate([
+            'name' => 'required|max:10',
+            'description' => 'required',
+        ]);
+
+        $post = Post::find($id);
+        
+        $post->fill(request()->all());
+        $post->save();
+        
+        return redirect()->route('post');
+    }
 }
