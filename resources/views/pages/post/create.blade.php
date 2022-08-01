@@ -8,7 +8,7 @@
     <form class="needs-validation" action="{{ route('post.store') }}" method="POST">
       @csrf
       <label for="fname">First name:</label><br>
-      <input type="text" id="name" name="name" maxlength="11" value="{{ old('name') }}"><br>
+      <input type="text" id="name" name="name" maxlength="11" required value="{{ old('name') }}" ><br>
 
       {{-- METHOD 2 --}}
       @error('name')
@@ -21,7 +21,7 @@
       <textarea id="desc" name="description">{{ old('description') }}</textarea>
       @error('description')
         <div class="">
-          please enter
+          This field is required
         </div>
       @enderror
       </br></br>

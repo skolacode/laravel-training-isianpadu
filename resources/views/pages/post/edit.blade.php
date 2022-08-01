@@ -5,8 +5,6 @@
 @section('content')
   <div class="container">
 
-    <p>>>> {{ $saya }}</p>
-
     <form class="needs-validation" action="{{ route('post.update', ['id' => $post->id]) }}" method="POST">
       @method('PATCH')
       @csrf

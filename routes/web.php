@@ -52,6 +52,6 @@ Route::name('post')->controller(PostController::class)->prefix('post')->group(fu
     Route::delete('/destroy/{id}', 'destroy')->name('.destroy');
 
     // Lesson 5
-    Route::get('/edit/{id}', 'edit')->name('.edit');
+    Route::get('/edit/{id}', 'edit')->middleware('log.url')->name('.edit');
     Route::patch('/update/{id}', 'update')->name('.update');
 });

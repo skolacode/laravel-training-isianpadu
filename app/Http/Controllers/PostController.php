@@ -39,8 +39,7 @@ class PostController extends Controller
 
     function edit($id) {
         $post = Post::find($id);
-        $saya = "hi";
-        return view('pages.post.edit', compact('post', 'saya'));
+        return view('pages.post.edit', compact('post'));
     }
 
     function update($id) {
