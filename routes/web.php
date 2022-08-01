@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +18,19 @@ use Illuminate\Support\Facades\Route;
 -
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('/login', function () {
+    return view('pages.auth.login');
+})->name('auth.login');
+
+
+Route::post('/login', [UserController::class, 'login'])->name('auth.login.attempt');
+Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
 Route::get('/user/{id}', function ($id) {
     return 'User id is: '.$id. ' :'. request()->hello;
@@ -55,3 +67,7 @@ Route::name('post')->controller(PostController::class)->prefix('post')->group(fu
     Route::get('/edit/{id}', 'edit')->middleware('log.url')->name('.edit');
     Route::patch('/update/{id}', 'update')->name('.update');
 });
+
+Route::get('/errors/unauthorized', function () {
+    return view('errors.Unauthorized');
+})->name('error.unauthorized');
