@@ -9,6 +9,15 @@
 
     <a style="margin-bottom: 10px" href="{{ route('post.create') }}" class="btn btn-outline-primary btn-sm" role="button">Create Post</a>
 
+
+    @foreach ($currency as $curr) 
+
+      <p>{{ $curr->currency_code }}</p>
+      <p>{{ $curr->unit }}</p>
+      <p>{{ $curr->rate->buying_rate }}</p>
+      
+    @endforeach
+
     @foreach ($posts as $post)
       <div class="card" style="padding: 10px; max-width: 400px; margin-bottom: 20px">
         <p style="font-size: 20px; color: #a18888">{{ $post->name }}</p>
