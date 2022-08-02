@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('pages.auth.login');
-})->name('auth.login');
+})->name('login');
 
 
 Route::post('/login', [UserController::class, 'login'])->name('auth.login.attempt');
@@ -48,7 +48,7 @@ Route::name('about')->prefix('about')->group(function() {
 
 Route::resource('members', MemberController::class);
 
-Route::name('post')->controller(PostController::class)->prefix('post')->group(function() {
+Route::middleware('auth')->name('post')->controller(PostController::class)->prefix('post')->group(function() {
     Route::get('/string', 'showString')->name('.string');
     
     // Lesson 1
