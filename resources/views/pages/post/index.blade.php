@@ -31,5 +31,11 @@
     @endforeach
 
   </div>
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        {{ $posts->links("pagination::bootstrap-5") }}
+      </ul>
+    </nav>
   
 @endsection

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 class PostController extends Controller
 {
     public function getAllPost() {
-        $posts = Post::all();
+        $posts = Post::paginate(5);
 
         return response()->json([
             'msg' => 'All Post is here',
