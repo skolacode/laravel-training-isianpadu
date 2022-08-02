@@ -12,6 +12,9 @@
     @foreach ($posts as $post)
       <div class="card" style="padding: 10px; max-width: 400px; margin-bottom: 20px">
         <p style="font-size: 20px; color: #a18888">{{ $post->name }}</p>
+
+        <p>Email:</p>
+        <p>{{ $post->user->email }}</p>
         
         <span style="font-size: 12px; color: #cdcdcd">Description</span>
         <p>{{ $post->description }}</p>

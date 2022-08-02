@@ -12,7 +12,7 @@ class PostController extends Controller
     }
 
     function show() {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::with("user")->orderBy('created_at', 'desc')->get();
         return view('pages.post.index', [ 'posts' => $posts ]);
     }
 
@@ -27,7 +27,11 @@ class PostController extends Controller
             'description' => 'required',
         ]);
 
-        Post::create(request()->all());
+        $post = new Post;
+        $post->fill(request()->all());
+        $post->user_id = auth()->user()->id;
+        $post->save();
+
         return redirect('post');
     }
 
