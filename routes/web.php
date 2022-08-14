@@ -48,25 +48,32 @@ Route::name('about')->prefix('about')->group(function() {
 
 Route::resource('members', MemberController::class);
 
-Route::middleware('auth')->name('post')->controller(PostController::class)->prefix('post')->group(function() {
-    Route::get('/string', 'showString')->name('.string');
-    
-    // Lesson 1
-    Route::get('', 'show');
-    
-    // Lesson 2
-    Route::get('/create', 'create')->name('.create');
-    
-    // Lesson 3
-    Route::post('/store', 'store')->name('.store');
-    
-    // Lesson 4
-    Route::delete('/destroy/{id}', 'destroy')->name('.destroy');
+Route::middleware('auth')->group(function() {
 
-    // Lesson 5
-    Route::get('/edit/{id}', 'edit')->middleware('log.url')->name('.edit');
-    Route::patch('/update/{id}', 'update')->name('.update');
+    Route::name('post')->controller(PostController::class)->prefix('post')->group(function() {
+        Route::get('/string', 'showString')->name('.string');
+        
+        // Lesson 1
+        Route::get('', 'show');
+        
+        // Lesson 2
+        Route::get('/create', 'create')->name('.create');
+        
+        // Lesson 3
+        Route::post('/store', 'store')->name('.store');
+        
+        // Lesson 4
+        Route::delete('/destroy/{id}', 'destroy')->name('.destroy');
+
+        // Lesson 5
+        Route::get('/edit/{id}', 'edit')->middleware('log.url')->name('.edit');
+        Route::patch('/update/{id}', 'update')->name('.update');
+
+    });
+
+    Route::get('/currency', [PostController::class, 'getfromAPI'])->name('.update');
 });
+
 
 Route::get('/errors/unauthorized', function () {
     return view('errors.Unauthorized');
